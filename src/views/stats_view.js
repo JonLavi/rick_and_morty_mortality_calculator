@@ -12,12 +12,14 @@ const dummyStats = [
     "deathCount": 1,
     "aliveCount": 2,
     "unknownCount": 0,
+    "mortalityRate": 50,
   },
   {
     "name": "Morty",
     "deathCount": 50,
     "aliveCount": 200,
     "unknownCount": 1,
+    "mortalityRate": 20,
   }
 ]
 
