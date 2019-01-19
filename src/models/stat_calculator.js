@@ -65,9 +65,9 @@ StatCalculator.prototype.findAllByName = function (name) {
 StatCalculator.prototype.makeStats = function (list, name){
   let stats = {
       "name": name,
-      "deathCount": this.makeDeathCount(list),
-      "aliveCount": this.makeAliveCount(list),
-      "unknownCount": this.makeUnknownCount(list),
+      "deathCount": this.makeCount("Dead", list),
+      "aliveCount": this.makeCount("Alive", list),
+      "unknownCount": this.makeCount("unknown", list),
     }
 
   stats.mortalityRate = this.makeMortalityRate(stats)
@@ -75,34 +75,14 @@ StatCalculator.prototype.makeStats = function (list, name){
   return stats
 };
 
-StatCalculator.prototype.makeDeathCount = function (list){
-  let deathCount = 0;
+StatCalculator.prototype.makeCount = function(status, list){
+  let count = 0;
   list.forEach((character) => {
-    if (character.status === "Dead"){
-      deathCount ++
+    if (character.status === status){
+      count ++
     }
   });
-  return deathCount;
-}
-
-StatCalculator.prototype.makeAliveCount = function (list){
-  let aliveCount = 0;
-  list.forEach((character) => {
-    if (character.status === "Alive"){
-      aliveCount ++
-    }
-  });
-  return aliveCount;
-}
-
-StatCalculator.prototype.makeUnknownCount = function (list){
-  let unknownCount = 0;
-  list.forEach((character) => {
-    if (character.status === "unknown"){
-      unknownCount ++
-    }
-  });
-  return unknownCount;
+  return count;
 }
 
 StatCalculator.prototype.makeMortalityRate = function (stats){
