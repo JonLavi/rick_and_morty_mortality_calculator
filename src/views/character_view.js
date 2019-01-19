@@ -23,15 +23,8 @@ CharacterView.prototype.bindEvents = function () {
       const newListView = new ListView(container);
       newListView.makeOccurrenceList(character);
 
-
       this.parentHtmlElement.appendChild(container);
     });
-    // make container for each character in Data, and put it in parentHtmlElement
-
-    // make stat view in each Container
-
-    // make a list view in each container
-
   })
 };
 
