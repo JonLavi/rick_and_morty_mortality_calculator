@@ -1,40 +1,42 @@
+@font-face {
+  font-family: 'schwifty';
+  src: url('../fonts/schwifty.ttf')
+}
+
 body{
   background-image: url('../images/bg.jpg');
   background-size: cover;
 }
 
-#logo {
-  background-color: rgba(255, 255, 255, 0.5);
+#logo, .name{
+  font-family: 'schwifty';
+  font-size: 48px;
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
 }
 
-nav{
-  background-color: rgba(255, 255, 255, 0.5);
+#logo, nav, .character {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid grey;
+  padding: 10px;
 }
 
 #contents{
   display: flex;
   justify-content: space-around;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-
-section {
-  border: 1px solid grey;
-  padding: 10px;
 }
 
 .character{
   flex-direction: column;
-}
-
-.name{
-  font-size: 32px;
+  padding: 20px;
 }
 
 .mortality-rate{
   color: red;
 }
-
 
 .death-count{
   color: darkred;

@@ -12,14 +12,14 @@ StatCalculator.prototype.bindEvents = function () {
   PubSub.subscribe('Mortality:character-list-ready', (event) => {
     this.characters = event.detail;
     // console.log('characters have arrived:', this.characters);
-    processedData = this.processData();
+    processedData = this.processData(incomingData);
     PubSub.publish('StatCalculator:character-stats-ready', processedData);
   });
 }
 
-StatCalculator.prototype.processData = function(){
-  const allRicks = this.findAllByName('Rick');
-  const allMortys = this.findAllByName('Morty');
+StatCalculator.prototype.processData = function(data){
+  const allRicks = this.findAllByName(data, 'Rick');
+  const allMortys = this.findAllByName(data, 'Morty');
 
   const rickStats = this.makeStats(allRicks, "Rick");
   const mortyStats = this.makeStats(allMortys, "Morty");
@@ -48,8 +48,8 @@ StatCalculator.prototype.makeCharacterList = function (listOfCharacters) {
   return list;
 };
 
-StatCalculator.prototype.findAllByName = function (name) {
-  return incomingData.filter(character => { return character.name.includes(name)});
+StatCalculator.prototype.findAllByName = function (data, name) {
+  return data.filter(character => { return character.name.includes(name)});
 };
 
 StatCalculator.prototype.makeStats = function (list, name){
