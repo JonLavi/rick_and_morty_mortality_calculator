@@ -30,7 +30,7 @@ CharacterView.prototype.bindEvents = function () {
 
 CharacterView.prototype.makeContainer = function (character) {
   const newCharacterContainer = document.createElement('section');
-  newCharacterContainer.id = character.name;
+  newCharacterContainer.classList.add('character');
   return newCharacterContainer;
 };
 

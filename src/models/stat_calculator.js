@@ -12,11 +12,10 @@ StatCalculator.prototype.bindEvents = function () {
   PubSub.subscribe('Mortality:character-list-ready', (event) => {
     this.characters = event.detail;
     // console.log('characters have arrived:', this.characters);
-    this.processData();
-    PubSub.publish('StatCalculator:character-stats-ready', dummyStats);
+    processedData = this.processData();
+    PubSub.publish('StatCalculator:character-stats-ready', processedData);
   });
 }
-
 
 StatCalculator.prototype.processData = function(){
   const allRicks = this.findAllByName('Rick');
@@ -33,7 +32,6 @@ StatCalculator.prototype.processData = function(){
 
   const readyData = [rickData, mortyData];
   console.log('ReadyData:',readyData)
-  console.log('DummyStats',dummyStats)
   return readyData;
 }
 

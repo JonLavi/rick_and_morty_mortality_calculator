@@ -1,4 +1,49 @@
+body{
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+}
+
+#logo {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+nav{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#contents{
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
 section {
   border: 1px solid grey;
   padding: 10px;
+}
+
+.character{
+  flex-direction: column;
+}
+
+.name{
+  font-size: 32px;
+}
+
+.mortality-rate{
+  color: red;
+}
+
+
+.death-count{
+  color: darkred;
+}
+
+.alive-count{
+  color: green;
+}
+
+.unknown-count{
+ color: grey;
 }

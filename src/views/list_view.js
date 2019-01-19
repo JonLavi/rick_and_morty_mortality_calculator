@@ -18,7 +18,8 @@ ListView.prototype.makeOccurrenceList = function (character) {
 };
 
 ListView.prototype.makeListTitle = function () {
-  const newListTitle = document.createElement('h2');
+  const newListTitle = document.createElement('h1');
+  newListTitle.classList.add('occurences-list');
   newListTitle.textContent = 'Occurrences:'
   this.targetContainer.appendChild(newListTitle);
 };
