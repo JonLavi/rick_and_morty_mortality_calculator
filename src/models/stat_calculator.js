@@ -9,16 +9,26 @@ const StatCalculator = function () {
 }
 
 StatCalculator.prototype.bindEvents = function () {
+
+  // making all seasons data
   PubSub.subscribe('Mortality:character-list-ready', (event) => {
     this.characters = event.detail;
-    // console.log('characters have arrived:', this.characters);
-    processedData = this.processData(incomingData);
+    console.log('characters have arrived at stat processing centre:', this.characters);
+    console.log('compare to this data:', incomingData);
+    processedData = this.processData(incomingData); // repalce with "this.characters" to use api data
     PubSub.publish('StatCalculator:character-stats-ready', processedData);
+  });
+
+  // subscribing and publishing season selection
+  PubSub.subscribe('NavView:season-selected', (event) => {
+    // this.filterBySeason(this.characters, event.detail);
   });
 }
 
 StatCalculator.prototype.processData = function(data){
+  console.log('Processing characters:', data);
   const allRicks = this.findAllByName(data, 'Rick');
+  console.log('found ricks:', allRicks)
   const allMortys = this.findAllByName(data, 'Morty');
 
   const rickStats = this.makeStats(allRicks, "Rick");
@@ -49,7 +59,11 @@ StatCalculator.prototype.makeCharacterList = function (listOfCharacters) {
 };
 
 StatCalculator.prototype.findAllByName = function (data, name) {
-  return data.filter(character => { return character.name.includes(name)});
+  console.log('finding name:', name, ' in:', data);
+  const ricks = data.filter(character => {return character.name.includes(name)});
+  // BUG: This filter does not work..... :(
+  console.log('ricks:', ricks);
+  return ricks
 };
 
 StatCalculator.prototype.makeStats = function (list, name){

@@ -8,7 +8,7 @@ const CharacterView = function (parentHtmlElement){
 
 CharacterView.prototype.bindEvents = function () {
   PubSub.subscribe('StatCalculator:character-stats-ready', (event) => {
-    console.log('Character stats arrived with View Maker');
+    console.log('Character stats arrived with View Maker:', event.detail);
 
     const characterData = event.detail;
 

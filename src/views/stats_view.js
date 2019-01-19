@@ -4,6 +4,7 @@ const StatsMaker = function (targetContainer){
 
 StatsMaker.prototype.makeStats = function (character) {
   this.makeName(character);
+  this.makeImage(character);
   this.makeMortalityRate(character);
   this.makeDeathCount(character);
   this.makeAliveCount(character);
@@ -15,6 +16,12 @@ StatsMaker.prototype.makeName = function (character) {
   nameElement.classList.add("name");
   nameElement.textContent = `${character.name}`;
   this.targetContainer.appendChild(nameElement);
+};
+
+StatsMaker.prototype.makeImage = function (character){
+  const imageElement = document.createElement('img');
+  imageElement.src = `../public/images/${character.name}.jpeg`
+  this.targetContainer.appendChild(imageElement);
 };
 
 StatsMaker.prototype.makeMortalityRate = function (character) {

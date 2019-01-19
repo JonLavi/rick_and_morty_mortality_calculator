@@ -4,18 +4,34 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="./js/bundle.js" type="text/javascript"></script>
   </head>
   <body>
     <h1 id="logo">Rick and Mort(alit)y</h1>
-    <nav>
-      <a href="#">All Seasons</a>
-      <a href="#">Season 1</a>
-      <a href="#">Season 2</a>
-      <a href="#">Season 3</a>
-    </nav>
-    <section id="contents">
 
+    <section id="about">
+      <p>
+        This JavaScript web app retrieves all characters from the <a href="https://rickandmortyapi.com/">Rick and Morty API</a>, and calculates a mortality rate for each version of 'Rick' and 'Morty'.
+      </p>
     </section>
+
+    <nav class="seasons-menu">
+      <a id="all-seasons" class="season-link">All Seasons</a>
+      <a id="season1" class="season-link">Season 1</a>
+      <a id="season2" class="season-link">Season 2</a>
+      <a id="season3" class="season-link">Season 3</a>
+    </nav>
+
+    <section id="contents"></section>
   </body>
+
+  <footer>
+    <span><i class="fas fa-code fa-sm"></i>  Jonathan Lavi - 2019</span>
+    <a href="mailto:jonathan.lavi@gmail.com"><i class="far fa-envelope fa-lg"></i></a>
+    <a href="http://www.github.com/JonLavi"><i class="fab fa-github-square fa-lg"></i></a>
+    <a href="https://stackoverflow.com/users/10651380/"><i class="fab fa-stack-overflow fa-lg"></i></a>
+    <a href="http://www.linkedin.com/JonathanLavi"><i class="fab fa-linkedin fa-lg"></i></a>
+    <a href="http://www.twitter.com/jonlavi"><i class="fab fa-twitter-square fa-lg"></i></a>
+  </footer>
 </html>

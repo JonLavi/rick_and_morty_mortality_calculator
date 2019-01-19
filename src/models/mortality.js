@@ -7,8 +7,8 @@ const Mortality = function (){
 };
 
 Mortality.prototype.bindEvents = function () {
-  // this.getData();
-  // console.log('got characters:', this.characters);
+  this.getData();
+  console.log('Mortality got characters:', this.characters);
   PubSub.publish('Mortality:character-list-ready', this.characters);
 };
 
