@@ -1,41 +1,35 @@
 const PubSub = require('../helpers/pub_sub.js');
 
+const dummyStats = [
+  {
+    "name": "Rick",
+    "deathCount": 1,
+    "aliveCount": 2,
+    "unknownCount": 0,
+    "mortalityRate": 50,
+    "list": ['Earth','Earth (C-137)']
+  },
+  {
+    "name": "Morty",
+    "deathCount": 50,
+    "aliveCount": 200,
+    "unknownCount": 1,
+    "mortalityRate": 20,
+    "list": ['Earth', 'Unknown']
+  }
+]
+
 const StatCalculator = function () {
   this.characters = [];
 }
 
 StatCalculator.prototype.bindEvents = function () {
-  PubSub.subscribe('Mortality:character-stats-ready', (event) => {
+  PubSub.subscribe('Mortality:character-list-ready', (event) => {
     this.characters = event.detail;
-    console.log('characters have arrived:', this.characters);
-    this.processData();
+    // console.log('characters have arrived:', this.characters);
+    // this.processData();
+    PubSub.publish('StatCalculator:character-stats-ready', dummyStats);
   });
-};
-
-
-StatCalculator.prototype.processData = function () {
-  // this.findRicks()
-  // this.findMortys()
-  // this.findStatus(characters)
-  // this.survivalRate(characters)
-  // this.numberOfEpisodes(characters)
-  // this.numberOfDimensions()
-};
-
-StatCalculator.prototype.methodName = function () {
-
-};
-
-
-StatCalculator.prototype.findRicks = function (characters) {
-  // return characters.filter(character => character.name.includes('Rick'));
-};
-
-StatCalculator.prototype.findMortys = function () {
-  console.log(`processing mortys:`, this.characters);
-  console.log(typeof(this.characters))
-  const listOfMortys = this.characters.filter(character => character.name.includes('Morty'));
-  console.log('list of mortys:', listOfMortys);
 };
 
 
