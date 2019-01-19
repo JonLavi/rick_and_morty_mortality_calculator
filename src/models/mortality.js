@@ -7,12 +7,9 @@ const Mortality = function (){
 };
 
 Mortality.prototype.bindEvents = function () {
-  this.getData()
-  console.log('got raw data:', this.rawData);
+  this.getData();
   console.log('got characters:', this.characters);
-  this.findRicks();
-  this.findMortys();
-  PubSub.publish('Mortality:character-data-ready', this.characters);
+  PubSub.publish('Mortality:character-list-ready', this.characters);
 };
 
 Mortality.prototype.getData = function() {
@@ -40,8 +37,6 @@ Mortality.prototype.getDataFromApiPage = function (page) {
 };
 
 
-
-
 // function: getAllCharacterData(){
 
   // function: retrieveNumberOfPages(){
@@ -61,32 +56,5 @@ Mortality.prototype.getDataFromApiPage = function (page) {
 
 //}
 
-
-
-
-Mortality.prototype.processData = function () {
-  this.findRicks()
-  this.findMortys()
-  // this.findStatus(characters)
-  // this.survivalRate(characters)
-  // this.numberOfEpisodes(characters)
-  // this.numberOfDimensions()
-};
-
-Mortality.prototype.methodName = function () {
-
-};
-
-
-Mortality.prototype.findRicks = function (characters) {
-  const listOfRicks = this.characters.filter(character => character.name.includes('Rick'));
-  console.log(listOfRicks);
-};
-
-
-Mortality.prototype.findMortys = function (characters) {
-  const listOfMortys = this.characters.filter(character => character.name.includes('Morty'));
-  console.log(listOfMortys);
-};
 
 module.exports = Mortality;
