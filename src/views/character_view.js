@@ -8,24 +8,32 @@ const CharacterView = function (parentHtmlElement){
 
 CharacterView.prototype.bindEvents = function () {
   PubSub.subscribe('StatCalculator:character-stats-ready', (event) => {
+
     console.log('Character stats arrived with View Maker:', event.detail);
 
     const characterData = event.detail;
 
     console.log(`Character data:`, characterData)
 
-    characterData.forEach((character) => {
-      const container = this.makeContainer(character);
-
-      const newStatsView = new StatsView(container);
-      newStatsView.makeStats(character);
-
-      const newListView = new ListView(container);
-      newListView.makeOccurrenceList(character);
-
-      this.parentHtmlElement.appendChild(container);
-    });
+    this.render(characterData);
   })
+};
+
+
+CharacterView.prototype.render = function (characterData) {
+  this.parentHtmlElement.innerHTML = '';
+  characterData.forEach((character) => {
+
+    const container = this.makeContainer(character);
+
+    const newStatsView = new StatsView(container);
+    newStatsView.makeStats(character);
+
+    const newListView = new ListView(container);
+    newListView.makeOccurrenceList(character);
+
+    this.parentHtmlElement.appendChild(container);
+  });
 };
 
 CharacterView.prototype.makeContainer = function (character) {
@@ -33,6 +41,5 @@ CharacterView.prototype.makeContainer = function (character) {
   newCharacterContainer.classList.add('character');
   return newCharacterContainer;
 };
-
 
 module.exports = CharacterView;

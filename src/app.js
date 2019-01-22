@@ -20,5 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const newMortality = new Mortality();
   newMortality.bindEvents();
 
-  console.log("wubba lubba dub dub")
+  console.log("wubba lubba dub dub!")
 })

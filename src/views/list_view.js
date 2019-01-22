@@ -3,7 +3,7 @@ const ListView = function (targetContainer){
 };
 
 ListView.prototype.makeOccurrenceList = function (character) {
-
+  console.log('making list for character:', character.name);
   this.makeListTitle();
 
   const newList = document.createElement('ul');

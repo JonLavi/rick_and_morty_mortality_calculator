@@ -7,9 +7,8 @@ const Mortality = function (){
 };
 
 Mortality.prototype.bindEvents = function () {
-  this.getData();
+  this.getData()
   console.log('Mortality got characters:', this.characters);
-  PubSub.publish('Mortality:character-list-ready', this.characters);
 };
 
 Mortality.prototype.getData = function() {
@@ -29,6 +28,7 @@ Mortality.prototype.getDataFromApiPage = function (page) {
   dataPromise.then((data) => {
     data.results.forEach((character) => {
       this.characters.push(character);
+      PubSub.publish('Mortality:character-list-ready', this.characters);
     });
   });
   dataPromise.catch((err) => {
