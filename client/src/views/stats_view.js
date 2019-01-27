@@ -3,7 +3,6 @@ const StatsMaker = function (targetContainer){
 };
 
 StatsMaker.prototype.makeStats = function (character) {
-  console.log('making stats for character:', character.name);
   this.makeName(character);
   this.makeImage(character);
   this.makeMortalityRate(character);
