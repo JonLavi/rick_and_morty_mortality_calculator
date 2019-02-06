@@ -2,6 +2,7 @@ This JavaScript web app retrieves all characters from the [Rick and Morty API](h
 
 
 ToDo:
+* Format occurrence list to highlight the status (alive/dead/unknown) of each occurrence
 * Make the Nav sections show the mortality rate based on seasons
 * Add last known location to occurrence list
 
