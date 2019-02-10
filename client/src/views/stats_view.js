@@ -20,14 +20,14 @@ StatsMaker.prototype.makeName = function (character) {
 
 StatsMaker.prototype.makeImage = function (character){
   const imageElement = document.createElement('img');
-  imageElement.src = `../public/images/${character.name}.jpeg`
+  imageElement.src = `../images/${character.name}.jpeg`
   this.targetContainer.appendChild(imageElement);
 };
 
 StatsMaker.prototype.makeMortalityRate = function (character) {
   const mortalityRateElement = document.createElement('h1');
   mortalityRateElement.classList.add("mortality-rate");
-  mortalityRateElement.textContent = `Mortality Rate: ${character.mortalityRate}%`;
+  mortalityRateElement.textContent = `Mortality Rate: ${character.mortalityRate.toFixed(2)}%`;
   this.targetContainer.appendChild(mortalityRateElement);
 };
 
