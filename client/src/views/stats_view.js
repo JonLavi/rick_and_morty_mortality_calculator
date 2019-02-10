@@ -27,7 +27,7 @@ StatsMaker.prototype.makeImage = function (character){
 StatsMaker.prototype.makeMortalityRate = function (character) {
   const mortalityRateElement = document.createElement('h1');
   mortalityRateElement.classList.add("mortality-rate");
-  mortalityRateElement.textContent = `Mortality Rate: ${character.mortalityRate}%`;
+  mortalityRateElement.textContent = `Mortality Rate: ${character.mortalityRate.toFixed(2)}%`;
   this.targetContainer.appendChild(mortalityRateElement);
 };
 
