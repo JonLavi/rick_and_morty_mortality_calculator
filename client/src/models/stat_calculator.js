@@ -1,11 +1,11 @@
 const PubSub = require('../helpers/pub_sub.js');
-const seasons = require('../data/seasons.js')
+const seasons = require('../data/seasons.js');
 
-const StatCalculator = function () {
+const StatCalculator = function() {
   this.characters = [];
 };
 
-StatCalculator.prototype.bindEvents = function () {
+StatCalculator.prototype.bindEvents = function() {
 
   // making all seasons data
   PubSub.subscribe('Mortality:character-list-ready', (event) => {
@@ -30,20 +30,20 @@ StatCalculator.prototype.bindEvents = function () {
 
 //////// outsource this into API module?? ////////
 
-StatCalculator.prototype.filterBySeason = function(data, requestedSeason, seasonsList){
+StatCalculator.prototype.filterBySeason = function(data, requestedSeason, seasonsList) {
 
-// TODO: get this workin'
+  // TODO: get this workin'
 
   const episodesArray = seasonsList[requestedSeason];
 
- // check the season requested , return the array of episodes
- // take each index of the episodes array,
- // and check if the number is in the array of character episodes
- // if so, add this character to a new array: (CharactersInRequestedSeasons)
+  // check the season requested , return the array of episodes
+  // take each index of the episodes array,
+  // and check if the number is in the array of character episodes
+  // if so, add this character to a new array: (CharactersInRequestedSeasons)
 
   const charactersInRequestedSeasons = data.filter((character) => {
     return episodesArray.forEach((checkedEpisode) => {
-      if (character.episode = `https://rickandmortyapi.com/api/episode/${checkedEpisode}`){
+      if (character.episode = `https://rickandmortyapi.com/api/episode/${checkedEpisode}`) {
         return true
       }
     });
@@ -54,7 +54,7 @@ StatCalculator.prototype.filterBySeason = function(data, requestedSeason, season
 
 //////// Data Processing Workflow ////////
 
-StatCalculator.prototype.processData = function(data){
+StatCalculator.prototype.processData = function(data) {
   const allRicks = this.findAllByName(data, 'Rick');
   const allMortys = this.findAllByName(data, 'Morty');
 
@@ -64,8 +64,8 @@ StatCalculator.prototype.processData = function(data){
   const rickList = this.makeOccurrenceList(allRicks);
   const mortyList = this.makeOccurrenceList(allMortys);
 
-  const rickData = this.buildCharacterData(rickStats,rickList);
-  const mortyData = this.buildCharacterData(mortyStats,mortyList);
+  const rickData = this.buildCharacterData(rickStats, rickList);
+  const mortyData = this.buildCharacterData(mortyStats, mortyList);
 
   const readyData = [rickData, mortyData];
   return readyData;
@@ -74,25 +74,27 @@ StatCalculator.prototype.processData = function(data){
 
 //////// Process Data Sub-Functions ////////
 
-StatCalculator.prototype.findAllByName = function (data, name) {
-  const ricks = data.filter(character => {return character.name.includes(name)});
+StatCalculator.prototype.findAllByName = function(data, name) {
+  const ricks = data.filter(character => {
+    return character.name.includes(name)
+  });
   return ricks
 };
 
-StatCalculator.prototype.makeStats = function (list, name){
+StatCalculator.prototype.makeStats = function(list, name) {
   let stats = {
-      "name": name,
-      "deathCount": this.makeCount("Dead", list),
-      "aliveCount": this.makeCount("Alive", list),
-      "unknownCount": this.makeCount("unknown", list),
-    }
+    "name": name,
+    "deathCount": this.makeCount("Dead", list),
+    "aliveCount": this.makeCount("Alive", list),
+    "unknownCount": this.makeCount("unknown", list),
+  }
 
   stats.mortalityRate = this.makeMortalityRate(stats)
 
   return stats
 };
 
-StatCalculator.prototype.makeOccurrenceList = function (listOfCharacters) {
+StatCalculator.prototype.makeOccurrenceList = function(listOfCharacters) {
   let list = [];
   listOfCharacters.forEach((character) => {
     list.push(character.name);
@@ -100,7 +102,7 @@ StatCalculator.prototype.makeOccurrenceList = function (listOfCharacters) {
   return list;
 };
 
-StatCalculator.prototype.buildCharacterData = function (stats, list) {
+StatCalculator.prototype.buildCharacterData = function(stats, list) {
   stats['list'] = list
   return stats
 };
@@ -108,18 +110,18 @@ StatCalculator.prototype.buildCharacterData = function (stats, list) {
 
 ///////// Make Stats Sub-Functions /////////
 
-StatCalculator.prototype.makeCount = function(status, list){
+StatCalculator.prototype.makeCount = function(status, list) {
   let count = 0;
   list.forEach((character) => {
-    if (character.status === status){
-      count ++
+    if (character.status === status) {
+      count++
     }
   });
   return count;
 };
 
-StatCalculator.prototype.makeMortalityRate = function (stats){
-  return 100*(stats.deathCount) / ((stats.deathCount)+(stats.aliveCount))
+StatCalculator.prototype.makeMortalityRate = function(stats) {
+  return 100 * (stats.deathCount) / ((stats.deathCount) + (stats.aliveCount))
 };
 
 
