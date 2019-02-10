@@ -18,7 +18,7 @@ StatCalculator.prototype.bindEvents = function() {
   PubSub.subscribe('NavView:season-selected', (event) => {
     const requestedSeason = event.detail;
     const filteredData = this.filterBySeason(this.characters, requestedSeason, seasons);
-    const processedData = this.processData(incomingData);
+    const processedData = this.processData(filteredData);
     PubSub.publish('StatCalculator:character-stats-ready', processedData);
   });
 };
@@ -33,7 +33,6 @@ StatCalculator.prototype.bindEvents = function() {
 StatCalculator.prototype.filterBySeason = function(data, requestedSeason, seasonsList) {
 
   // TODO: get this workin'
-
   const episodesArray = seasonsList[requestedSeason];
 
   // check the season requested , return the array of episodes
@@ -43,7 +42,7 @@ StatCalculator.prototype.filterBySeason = function(data, requestedSeason, season
 
   const charactersInRequestedSeasons = data.filter((character) => {
     return episodesArray.forEach((checkedEpisode) => {
-      if (character.episode = `https://rickandmortyapi.com/api/episode/${checkedEpisode}`) {
+      if (character.episode.includes(`https://rickandmortyapi.com/api/episode/${checkedEpisode}`)) {
         return true
       }
     });

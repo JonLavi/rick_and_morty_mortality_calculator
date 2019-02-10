@@ -1,6 +1,7 @@
 # Mortality - a Rick and Morty Mortality Rate Calculator
 
 This JavaScript web app retrieves all characters from the [Rick and Morty API](https://rickandmortyapi.com/), and calculates a mortality rate for each version of 'Rick' and 'Morty'.
+A live version of this app can be found on: https://rick-and-mortality.herokuapp.com
 
 ## ToDo:
 * Format occurrence list to highlight the status (alive/dead/unknown) of each occurrence
@@ -13,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Mortality requires node.js, npm and webpack to run. 
+Mortality requires node.js, npm and webpack to run.
 
 ### Installing
 
@@ -21,7 +22,7 @@ Running Mortality requires only a few simple steps:
 Installing dependencies should be handeled by npm. In the root folder run:
 
 ```
-npm install 
+npm install
 ```
 
 Run webpack
