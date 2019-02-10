@@ -4,8 +4,9 @@ This JavaScript web app retrieves all characters from the [Rick and Morty API](h
 A live version of this app can be found on: https://rick-and-mortality.herokuapp.com
 
 ## ToDo:
+* Migrate API requests to backend, store data in a server-side mongoDB
 * Format occurrence list to highlight the status (alive/dead/unknown) of each occurrence
-* Make the Nav sections show the mortality rate based on seasons
+* Make the Nav section clicks show the mortality rate based on seasons
 * Add last known location to occurrence list
 
 ## Getting Started
@@ -38,7 +39,8 @@ Open index.html to view the statistics
 ## Built With
 
 * [node.js](https://maven.apache.org/) - Dependency Management
-* [webpack](https://webpack.js.org)
+* [webpack](https://webpack.js.org) - Bundling
+* [express](https://expressjs.com) - Fast, unopinionated, minimalist web framework for Node.js
 
 
 ## Acknowledgments
