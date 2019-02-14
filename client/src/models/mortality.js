@@ -28,25 +28,28 @@ Mortality.prototype.queryAmountOfPages = function() {
 }
 
 Mortality.prototype.makeApiRequestForMultiplePages = function(numberOfPages) {
-    for (var i = 0; i = numberOfPages; i++) {
+    for (var i = 1; i < numberOfPages; i++) {
         this.addApiRequestForPageToPromiseArray(i);
-    }
+    };
 };
 
 Mortality.prototype.addApiRequestForPageToPromiseArray = function(page) {
+    newPromise = this.makeApiRequestForPage(page);
+    this.promiseArray.push(newPromise);
+};
+
+Mortality.prototype.makeApiRequestForPage = function(page) {
     const url = `https://rickandmortyapi.com/api/character/?page=${page}`;
     const requestHelper = new RequestHelper(url);
-    const dataPromise = requestHelper.get();
-    this.promiseArray.push(dataPromise);
+    return requestHelper.get();
 };
 
 Mortality.prototype.resolvePromiseArray = function() {
     Promise.all(this.promiseArray)
         .then((data) => {
             data.forEach((apiCallResponse) => {
-                apiCallResponse.results.forEach((character) => {
-                    this.characters.push(character);
-                });
+                console.log(apiCallResponse.results);
+                this.characters.concat(apiCallResponse.results);
             });
             console.log(this.characters.length);
             PubSub.publish('Mortality:character-list-ready', this.characters);
