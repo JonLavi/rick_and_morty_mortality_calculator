@@ -8,11 +8,14 @@ const Mortality = function() {
 };
 
 Mortality.prototype.bindEvents = function() {
+    // find how many pages the API has
     numberOfApiPagesPromise = this.queryAmountOfPages();
+    // once API Pages known, make the necessay API call for each page and create a promise Array from calls
     numberOfApiPagesPromise
         .then((data) => {
             const numberOfApiPages = data.info.pages;
             this.makeApiRequestForMultiplePages(numberOfApiPages);
+            // when all promises are gathered, resolve the promise Array
             this.resolvePromiseArray();
         })
         .catch((err) => {
@@ -28,7 +31,7 @@ Mortality.prototype.queryAmountOfPages = function() {
 }
 
 Mortality.prototype.makeApiRequestForMultiplePages = function(numberOfPages) {
-    for (var i = 1; i < numberOfPages; i++) {
+    for (var i = 0; i <= numberOfPages; i++) {
         this.addApiRequestForPageToPromiseArray(i);
     };
 };
@@ -48,8 +51,11 @@ Mortality.prototype.resolvePromiseArray = function() {
     Promise.all(this.promiseArray)
         .then((data) => {
             data.forEach((apiCallResponse) => {
+                apiCallResponse.results.forEach((character) => {
+                    this.characters.push(character);
+                })
                 console.log(apiCallResponse.results);
-                this.characters.concat(apiCallResponse.results);
+
             });
             console.log(this.characters.length);
             PubSub.publish('Mortality:character-list-ready', this.characters);
