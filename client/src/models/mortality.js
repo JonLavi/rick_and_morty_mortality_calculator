@@ -8,7 +8,39 @@ const Mortality = function() {
 };
 
 Mortality.prototype.bindEvents = function() {
-    this.getData();
+    numberOfApiPagesPromise = this.queryAmountOfPages();
+    numberOfApiPagesPromise
+        .then((data) => {
+            const numberOfApiPages = data.info.pages;
+            this.makeApiRequestForMultiplePages(numberOfApiPages);
+            this.resolvePromiseArray();
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
+};
+
+Mortality.prototype.queryAmountOfPages = function() {
+    const url = `https://rickandmortyapi.com/api/character/?page=1`;
+    const requestHelper = new RequestHelper(url);
+    return requestHelper.get();
+}
+
+Mortality.prototype.makeApiRequestForMultiplePages = function(numberOfPages) {
+    for (var i = 0; i = numberOfPages; i++) {
+        this.addApiRequestForPageToPromiseArray(i);
+    }
+};
+
+Mortality.prototype.addApiRequestForPageToPromiseArray = function(page) {
+    const url = `https://rickandmortyapi.com/api/character/?page=${page}`;
+    const requestHelper = new RequestHelper(url);
+    const dataPromise = requestHelper.get();
+    this.promiseArray.push(dataPromise);
+};
+
+Mortality.prototype.resolvePromiseArray = function() {
     Promise.all(this.promiseArray)
         .then((data) => {
             data.forEach((apiCallResponse) => {
@@ -16,30 +48,13 @@ Mortality.prototype.bindEvents = function() {
                     this.characters.push(character);
                 });
             });
+            console.log(this.characters.length);
             PubSub.publish('Mortality:character-list-ready', this.characters);
         })
         .catch((err) => {
-            console.error(err)
+            console.error(err);
         });
-};
-
-Mortality.prototype.getData = function() {
-    this.getDataFromMultipleApiPages(26);
-};
-
-Mortality.prototype.getDataFromMultipleApiPages = function(numberOfPages) {
-    for (var i = 0; i < numberOfPages; i++) {
-        this.getDataFromApiPage(i);
-    }
-};
-
-Mortality.prototype.getDataFromApiPage = function(page) {
-    const url = `https://rickandmortyapi.com/api/character/?page=${page}`;
-    const requestHelper = new RequestHelper(url);
-    const dataPromise = requestHelper.get();
-    this.promiseArray.push(dataPromise);
-};
-
+}
 
 
 // function: getAllCharacterData(){
