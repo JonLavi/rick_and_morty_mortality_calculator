@@ -4,10 +4,23 @@ const PubSub = require('../helpers/pub_sub.js');
 const Mortality = function() {
     this.characters = [];
     this.numberOfPages = null;
+    this.promiseArray = [];
 };
 
 Mortality.prototype.bindEvents = function() {
-    this.getData()
+    this.getData();
+    Promise.all(this.promiseArray)
+        .then((data) => {
+            data.forEach((apiCallResponse) => {
+                apiCallResponse.results.forEach((character) => {
+                    this.characters.push(character);
+                });
+            });
+            PubSub.publish('Mortality:character-list-ready', this.characters);
+        })
+        .catch((err) => {
+            console.error(err)
+        });
 };
 
 Mortality.prototype.getData = function() {
@@ -24,15 +37,7 @@ Mortality.prototype.getDataFromApiPage = function(page) {
     const url = `https://rickandmortyapi.com/api/character/?page=${page}`;
     const requestHelper = new RequestHelper(url);
     const dataPromise = requestHelper.get();
-    dataPromise.then((data) => {
-        data.results.forEach((character) => {
-            this.characters.push(character);
-            PubSub.publish('Mortality:character-list-ready', this.characters); // TODO: wait for all promises and publish once
-        });
-    });
-    dataPromise.catch((err) => {
-        console.error(err)
-    });
+    this.promiseArray.push(dataPromise);
 };
 
 
