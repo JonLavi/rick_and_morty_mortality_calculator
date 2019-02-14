@@ -3,7 +3,6 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const Mortality = function() {
     this.characters = [];
-    this.numberOfPages = null;
     this.promiseArray = [];
 };
 
@@ -54,8 +53,6 @@ Mortality.prototype.resolvePromiseArray = function() {
                 apiCallResponse.results.forEach((character) => {
                     this.characters.push(character);
                 })
-                console.log(apiCallResponse.results);
-
             });
             console.log(this.characters.length);
             PubSub.publish('Mortality:character-list-ready', this.characters);
@@ -63,7 +60,7 @@ Mortality.prototype.resolvePromiseArray = function() {
         .catch((err) => {
             console.error(err);
         });
-}
+};
 
 
 // function: getAllCharacterData(){
