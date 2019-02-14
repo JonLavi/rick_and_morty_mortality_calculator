@@ -1,75 +1,90 @@
 @font-face {
-  font-family: 'schwifty';
-  src: url('../fonts/schwifty.ttf')
+    font-family: 'schwifty';
+    src: url('../fonts/schwifty.ttf')
 }
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-
-body{
-  background-image: url('../images/bg.jpg');
-  background-size: cover;
-  font-family: 'Montserrat', sans-serif;
+body {
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
 }
 
-#logo, .name{
-  font-family: 'schwifty';
-  font-weight: 100;
-  font-size: 48px;
-  color: rgb(0,176,196);
-  text-shadow:
-  -1px -1px 0 rgb(0, 62, 74),
-  1px -1px 0 rgb(0, 62, 74),
-  -1px 1px 0 rgb(0, 62, 74),
-  1px 1px 0 rgb(0, 62, 74),
-  0 0 50px rgb(116, 251, 125);
+#logo,
+.name {
+    font-family: 'schwifty';
+    font-weight: 100;
+    font-size: 48px;
+    color: rgb(0, 176, 196);
+    text-shadow: -1px -1px 0 rgb(0, 62, 74), 1px -1px 0 rgb(0, 62, 74), -1px 1px 0 rgb(0, 62, 74), 1px 1px 0 rgb(0, 62, 74), 0 0 50px rgb(116, 251, 125);
 }
 
-img{
-  width: 150px;
+img {
+    width: 150px;
 }
 
-#logo, nav, .character, #about, footer {
-  background-color: rgba(255, 255, 255, 0.6);
-  border: 1px solid grey;
-  padding: 10px;
-  text-align: center;
+#logo,
+nav,
+.character,
+#about,
+footer {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid grey;
+    padding: 10px;
+    text-align: center;
 }
 
-#contents{
-  display: flex;
-  justify-content: space-around;
+#contents {
+    display: flex;
+    justify-content: space-around;
 }
 
-.character{
-  flex-direction: column;
-  padding: 20px;
+.character {
+    flex-direction: column;
+    padding: 20px;
 }
 
-.mortality-rate{
-  color: red;
+.mortality-rate {
+    color: red;
 }
 
-.death-count{
-  color: darkred;
+.death-count {
+    color: darkred;
 }
 
-.alive-count{
-  color: green;
+.alive-count {
+    color: green;
 }
 
-.unknown-count{
- color: grey;
+.unknown-count {
+    color: grey;
 }
 
-footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+ul {
+    list-style-type: none;
+}
+
+ul .Alive {
+    color: green;
+}
+
+ul .Dead {
+    color: darkred;
+    text-decoration: line-through;
+}
+
+ul .unknown {
+    color: grey;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 i {
-  color: black;
-  size: 10px;
-  font-size: 10px;
+    color: black;
+    size: 10px;
+    font-size: 10px;
 }

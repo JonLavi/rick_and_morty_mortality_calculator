@@ -96,7 +96,7 @@ StatCalculator.prototype.makeStats = function(list, name) {
 StatCalculator.prototype.makeOccurrenceList = function(listOfCharacters) {
     let list = [];
     listOfCharacters.forEach((character) => {
-        list.push(character.name);
+        list.push({ "name": character.name, "status": character.status }); //TODO: make it send the character status as well
     });
     return list;
 };
