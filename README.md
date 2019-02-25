@@ -3,6 +3,9 @@
 This JavaScript web app retrieves all characters from the [Rick and Morty API](https://rickandmortyapi.com/), and calculates a mortality rate for each version of 'Rick' and 'Morty'.
 A live version of this app can be found on: https://rick-and-mortality.herokuapp.com
 
+![screen shot 2019-02-25 at 12 02 53](https://user-images.githubusercontent.com/44193148/53338758-6a6db700-38fc-11e9-9206-e1fbbded724e.png)
+
+
 ## ToDo:
 * Migrate API requests to backend, store data in a server-side mongoDB
 * Format occurrence list to highlight the status (alive/dead/unknown) of each occurrence
