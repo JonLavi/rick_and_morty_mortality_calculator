@@ -75,7 +75,7 @@ StatCalculator.prototype.processData = function(data){
 //////// Process Data Sub-Functions ////////
 
 StatCalculator.prototype.findAllByName = function (data, name) {
-  const ricks = data.filter(character => {return character.name.includes(name)});
+  const characters = data.filter(character => {return character.name.includes(name)});
   return ricks
 };
 

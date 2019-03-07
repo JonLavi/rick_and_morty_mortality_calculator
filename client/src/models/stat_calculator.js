@@ -109,10 +109,10 @@ StatCalculator.prototype.buildCharacterData = function(stats, list) {
 
 ///////// Make Stats Sub-Functions /////////
 
-StatCalculator.prototype.makeCount = function(status, list) {
+StatCalculator.prototype.makeCount = function(requiredCharStatus, listOfCharacters) {
     let count = 0;
-    list.forEach((character) => {
-        if (character.status === status) {
+    listOfCharacters.forEach((character) => {
+        if (character.status === requiredCharStatus) {
             count++
         }
     });
