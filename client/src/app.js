@@ -6,9 +6,9 @@ const NavView = require('./views/nav_view.js');
 document.addEventListener('DOMContentLoaded', () => {
   console.log("JavaScript has loaded");
 
-  const navElement = document.querySelector(`nav.seasons-menu`);
-  const newNavView = new NavView(navElement);
-  newNavView.bindEvents();
+  // const navElement = document.querySelector(`nav.seasons-menu`);
+  // const newNavView = new NavView(navElement);
+  // newNavView.bindEvents();
 
   const contentsElement = document.querySelector(`#contents`);
   const newCharacterView = new CharacterView(contentsElement);
