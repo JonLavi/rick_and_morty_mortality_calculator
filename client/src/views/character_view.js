@@ -9,7 +9,8 @@ const CharacterView = function (parentHtmlElement){
 CharacterView.prototype.bindEvents = function () {
   PubSub.subscribe('StatCalculator:character-stats-ready', (event) => {
     const characterData = event.detail;
-    this.render(characterData);
+    this.render(characterData)
+    console.log(characterData);
   })
 };
 
