@@ -4,6 +4,7 @@ const path = require('path');
 const parser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const createRouter = require("./helpers/create_router.js");
+const ApiQueryHelper = require('./helpers/ApiQueryHelper');
 let fetch = require("node-fetch");
 
 const publicPath = path.join(__dirname, '../client/public');
@@ -26,18 +27,8 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true })
   })
   .catch(console.error);
 
-
-const queryApi = () => {  
-  let apiData = null;
-  fetch('https://rickandmortyapi.com/api/character/')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      apiData = data;
-    })
-}
-
-queryApi();
+mrbanana = new ApiQueryHelper();
+mrbanana.getAllCharacters();
 
 app.listen(process.env.PORT || 3000, function () { // NEW
   console.log('App running');
