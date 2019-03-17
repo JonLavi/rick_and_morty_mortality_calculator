@@ -17,7 +17,6 @@ class ApiQueryHelper {
         // when all promises are gathered, resolve the promise Array
         this.resolvePromiseArray();
       })
-      .then(()=>{console.log(this.characters)})
       .catch((err) => {
         console.error(err);
       });
@@ -45,9 +44,6 @@ class ApiQueryHelper {
   addApiRequestForPageToPromiseArray(page) {
     let newPromise = this.makeApiRequestForPage(page);
     this.promiseArray.push(newPromise);
-    // newPromise
-    //   .then(res => res.json())
-      // .then(data => console.log(data))
   };
 
   makeApiRequestForPage(page) {
@@ -56,7 +52,6 @@ class ApiQueryHelper {
     return (fetch(url)
       .then(res => res.json())
       .then(data => {return data})
-      // .then(data => this.characters.push(data.results))
     )
     
   };
@@ -69,7 +64,6 @@ class ApiQueryHelper {
             this.characters.push(character);
           })
         });
-        console.log(this.characters);
       })
       .catch((err) => {
         console.error(err);
