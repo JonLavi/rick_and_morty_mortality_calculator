@@ -28,8 +28,7 @@ MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true })
   .catch(console.error);
 
 apiQueryHelper = new ApiQueryHelper();
-const characters = apiQueryHelper.getAllCharacters();
-console.log(characters);
+const characters = apiQueryHelper.getAllCharacters()
 
 app.listen(process.env.PORT || 3000, function () { // NEW
   console.log('App running');

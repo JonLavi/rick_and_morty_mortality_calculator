@@ -10,17 +10,18 @@ class ApiQueryHelper {
     // find how many pages the API has
     let numberOfApiPagesPromise = this.queryAmountOfPages();
     // once API Pages known, make the necessay API call for each page and create a promise Array from calls
-    numberOfApiPagesPromise
+    return (numberOfApiPagesPromise
       .then((data) => {
         const numberOfApiPages = data.info.pages;
         this.makeApiRequestForMultiplePages(numberOfApiPages);
         // when all promises are gathered, resolve the promise Array
-        this.resolvePromiseArray();
+        return this.resolvePromiseArray();
       })
+      // .then(() => {return (this.characters)})
       .catch((err) => {
         console.error(err);
-      });
-
+      })
+    )
   };
 
   queryAmountOfPages() {
@@ -32,7 +33,6 @@ class ApiQueryHelper {
     .then(data => {pageData = data})
     .then(() => {return pageData})
     .catch(err => console.error(err)))
-
   }
 
   makeApiRequestForMultiplePages(numberOfPages) {
@@ -52,6 +52,7 @@ class ApiQueryHelper {
     return (fetch(url)
       .then(res => res.json())
       .then(data => {return data})
+      // return the characters here (or save to mdb)
     )
     
   };
@@ -61,7 +62,9 @@ class ApiQueryHelper {
       .then((data) => {
         data.forEach((apiCallResponse) => {
           apiCallResponse.results.forEach((character) => {
-            this.characters.push(character);
+            return character;
+            // this.characters.push(character);
+            // console.log(character)
           })
         });
       })
