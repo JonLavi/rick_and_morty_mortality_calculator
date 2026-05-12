@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "2.0.20",
-    "webpack": "5.94.0",
+    "nodemon": "^3.1.14",
+    "webpack": "^5.106.2",
     "webpack-cli": "5.1.4"
   },
   "dependencies": {
