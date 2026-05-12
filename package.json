@@ -16,7 +16,7 @@
   "devDependencies": {
     "nodemon": "^3.1.14",
     "webpack": "^5.106.2",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "7.0.2"
   },
   "dependencies": {
     "express": "4.22.1"
